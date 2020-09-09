@@ -27,6 +27,19 @@ function Movie({ addToSavedList }) {
     return <div>Loading movie information...</div>;
   }
 
+  const deleteMovie = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:5000/api/movies/${params.id}`)
+      .then((res) => {
+        console.log("Movie Deleted Response", res);
+        push("/");
+      })
+      .catch((err) => {
+        console.log("Delete Request API Error", err);
+      });
+  };
+
   return (
     <div className="save-wrapper">
       <MovieCard movie={movie} />
@@ -35,6 +48,7 @@ function Movie({ addToSavedList }) {
         Save
       </div>
       <button onClick={() => push(`/update-movie/${params.id}`)}>Edit</button>
+      <button onClick={deleteMovie}>Delete</button>
     </div>
   );
 }

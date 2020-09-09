@@ -23,7 +23,7 @@ function UpdateMovieForm() {
       console.log("I am the res", res.data);
       setMovie(res.data);
     });
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     setMovie({
@@ -39,7 +39,7 @@ function UpdateMovieForm() {
       .put(`http://localhost:5000/api/movies/${id}`, movie)
       .then((res) => {
         console.log("API response", res.data);
-        push(`/movies/${id}`);
+        push(`/`);
       })
       .catch((err) => {
         console.log("API error", err);
